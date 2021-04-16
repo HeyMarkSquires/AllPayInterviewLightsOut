@@ -13,6 +13,9 @@ namespace AllPayInterviewLightsOut
         //The number of moves that the player has made 
         private int MoveCount { get; set; }
 
+        /// <summary>
+        /// Constructor that sets up the form component and the game
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -139,6 +142,7 @@ namespace AllPayInterviewLightsOut
                 }
                 myButton.Location = new Point(xPos, yPos);
                 myButton.Click += new EventHandler(PlayButtonClick);
+                //Increment the x position for the next button
                 xPos += 50;
                 this.Buttons.Add(myButton);
                 this.Controls.Add(myButton);
@@ -167,6 +171,7 @@ namespace AllPayInterviewLightsOut
             //Pattern E
             int[] e = new int[] { 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 };
             patterns.Add(e);
+            //Randomly select a pattern to use in the game
             int[] result = patterns[new Random().Next(0, 5)];
 
             return result;

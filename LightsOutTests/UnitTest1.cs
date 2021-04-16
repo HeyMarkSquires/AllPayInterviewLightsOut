@@ -1,5 +1,6 @@
 using AllPayInterviewLightsOut;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -21,7 +22,6 @@ namespace LightsOutTests
         [Test]
         public void GameIsNotInWinStateAllGreenButtons()
         {
-            TestForm.SetUpGame();
             List<Button> list = new List<Button>();
             for (var i = 0; i < 25; i++)
             {
