@@ -8,11 +8,11 @@ namespace LightsOutTests
 {
     public class Tests
     {
-        private Form1 f;
+        private Form1 TestForm { get; set; }
         [SetUp]
         public void Setup()
         {
-            f = new Form1();
+            TestForm = new Form1();
         }
 
         /// <summary>
@@ -21,14 +21,17 @@ namespace LightsOutTests
         [Test]
         public void GameIsNotInWinStateAllGreenButtons()
         {
-            List<Button> l = new List<Button>();
+            TestForm.SetUpGame();
+            List<Button> list = new List<Button>();
             for (var i = 0; i < 25; i++)
             {
-                Button b = new Button();
-                b.BackColor = Color.Green;
-                l.Add(b);
+                Button button = new Button
+                {
+                    BackColor = Color.Green
+                };
+                list.Add(button);
             }
-            Assert.AreEqual(f.checkWinState(l), false);
+            Assert.AreEqual(TestForm.CheckWinState(list), false);
         }
 
         /// <summary>
@@ -37,15 +40,17 @@ namespace LightsOutTests
         [Test]
         public void GameIsNotInWinStateOneGreenButton()
         {
-            List<Button> l = new List<Button>();
+            List<Button> list = new List<Button>();
             for (var i = 0; i < 25; i++)
             {
-                Button b = new Button();
-                b.BackColor = Color.White;
-                l.Add(b);
+                Button button = new Button
+                {
+                    BackColor = Color.White
+                };
+                list.Add(button);
             }
-            l[13].BackColor = Color.Green;
-            Assert.AreEqual(f.checkWinState(l), false);
+            list[13].BackColor = Color.Green;
+            Assert.AreEqual(TestForm.CheckWinState(list), false);
         }
 
 
@@ -55,14 +60,16 @@ namespace LightsOutTests
         [Test]
         public void GameIsInWinState()
         {
-            List<Button> l = new List<Button>();
+            List<Button> list = new List<Button>();
             for (var i = 0; i < 25; i++)
             {
-                Button b = new Button();
-                b.BackColor = Color.White;
-                l.Add(b);
+                Button button = new Button
+                {
+                    BackColor = Color.White
+                };
+                list.Add(button);
             }
-            Assert.AreEqual(f.checkWinState(l), true);
+            Assert.AreEqual(TestForm.CheckWinState(list), true);
         }
 
 
@@ -72,10 +79,12 @@ namespace LightsOutTests
         [Test]
         public void ButtonToggleToWhiteTest()
         {
-            Button myButton = new Button();
-            myButton.BackColor = Color.Green;
-            f.toggleColour(myButton);
-            Assert.AreEqual(myButton.BackColor, Color.White);
+            Button button = new Button
+            {
+                BackColor = Color.Green
+            };
+            TestForm.ToggleColour(button);
+            Assert.AreEqual(button.BackColor, Color.White);
         }
 
         /// <summary>
@@ -84,11 +93,13 @@ namespace LightsOutTests
         [Test]
         public void ButtonToggleToGreenTest()
         {
-            Button myButton = new Button();
-            myButton.BackColor = Color.White;
-            f.toggleColour(myButton);
+            Button button = new Button
+            {
+                BackColor = Color.White
+            };
+            TestForm.ToggleColour(button);
 
-            Assert.AreEqual(myButton.BackColor, Color.Green);
+            Assert.AreEqual(button.BackColor, Color.Green);
         }
     }
 }
